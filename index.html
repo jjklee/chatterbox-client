@@ -19,6 +19,8 @@
         search += 'username=' + (prompt('What is your name?') || 'anonymous');
         window.location.search = search;
       }
+    
+
     </script>
   </head>
   <body>
@@ -30,11 +32,17 @@
         <select></select>
         <button>Add Room</button>
       </div>
+
+      <div>
+        <button id="refresh">See new messages</button>
+      </div>
+      
       <form action="#" id="send" method="post">
         <input type="text" name="message" id="message"/>
         <input type="submit" name="submit" class="submit"/>
       </form>
     </div>
+
     <div id="chats"></div>
     <script src="client/env/config.js"></script>
     <script src="client/scripts/parse.js"></script>
@@ -48,6 +56,11 @@
     <script src="client/scripts/app.js"></script>
     <script>
       $(() => App.initialize());
+    </script>
+    <script>
+      $('#refresh').click(function() {
+        location.reload();
+      });
     </script>
   </body>
 </html>
