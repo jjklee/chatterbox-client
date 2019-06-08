@@ -11,6 +11,7 @@ var Parse = {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
+        location.reload();
         console.log('chatterbox: Message sent');
       },
       error: function (data) {

@@ -4,6 +4,7 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    Rooms.addRoomsToSelection();
     // App.enterRoom();
   },
 

@@ -1,17 +1,26 @@
 var Rooms = {
-  initialize: function() {
-    //loop through availableRooms object
-    //append each to select <option>
 
-    //add initialize to app.js
-  },
-
-  availableRooms: [],
+  availableRoomsObj: {},
 
   getRooms: function(obj) {
-    if (!Rooms.availableRooms.includes(obj.roomname) && obj.roomname !== undefined) {
-      Rooms.availableRooms.push(obj.roomname);
+    if (!Rooms.availableRoomsObj[obj.roomname] && obj.roomname !== undefined) {
+      Rooms.availableRoomsObj[obj.roomname] = obj.roomname;
     }
-    return Rooms.getAvailableRooms;
-  }
+    return Rooms.getAvailableRoomsObj;
+    // console.log(Rooms.availableRoomsObj);
+  },
+
+  addRoomsToSelection: function () {
+    var allRooms = App.getAllRooms();
+    for (var key in allRooms) {
+      //append to select
+      var option = Rooms.render(allRooms);
+      $('#selectRooms').append(option);
+    }
+    //when adding new room re-initialize the drop down bar?
+  },
+
+  render:  _.template(`
+   <option class="roomname"><%- roomname %></option>
+  `)
 };

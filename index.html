@@ -69,6 +69,11 @@
        var roomname = document.getElementById('roomnameInput').value;
        App.addRoom(roomname);
     });
+
+    $('.submit').click(function() {
+      var mssg = document.getElementById('message').value;
+      App.addMessage(mssg);
+    })
   </script>
   </body>
 </html>
