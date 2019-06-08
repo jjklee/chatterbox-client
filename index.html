@@ -28,9 +28,10 @@
       <h1>chatterbox</h1>
       <div class="spinner"><img src="client/images/spiffygif_46x46.gif"></div>
       <div id="rooms">
-        Room:
-        <select></select>
-        <button>Add Room</button>
+        Change Room:
+        <select id="selectRooms"></select>
+        <p><input type="text" id="roomnameInput"></input><button id="roomnameInputButton">Add Room</button></p>
+        
       </div>
 
       <div>
@@ -62,5 +63,12 @@
         location.reload();
       });
     </script>
+
+    <script>
+    $('#roomnameInputButton').click(function() {
+       var roomname = document.getElementById('roomnameInput').value;
+       App.addRoom(roomname);
+    });
+  </script>
   </body>
 </html>

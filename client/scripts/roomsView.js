@@ -4,11 +4,21 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    
+    // App.enterRoom();
   },
 
   renderRoom: function(room) {
+    // Rooms.availableRooms;
 
+    // if (message.room === undefined) {
+    //   return;
+    // } 
+
+    // var node = MessageView.render(message);
+    // $('#chats').append(node);
+
+    //room.roomname
+    //var node = rooms.render(room);
   }
 
 };
