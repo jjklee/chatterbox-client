@@ -8,8 +8,9 @@ var App = {
     App.username = window.location.search.substr(10);
 
     FormView.initialize();
-    RoomsView.initialize();
     MessagesView.initialize();
+    RoomsView.initialize();
+
 
     // Fetch initial batch of messages
     App.startSpinner();
@@ -41,16 +42,11 @@ var App = {
     FormView.setStatus(false);
   },
 
-  displayMessages: function() {
-    this.fetch(MessagesView.renderMessage);
-  },
-
   addRoom: function(roomname) {
-
     if (!Rooms[roomname]) {
       var newOption = '<option>' + roomname + '</option>';
       $('#selectRooms').append(newOption);
-      Messages.username = App.username || 'Anonymous';
+      Messages.username = App.username;
       Messages.text = text || 'none';
       Messages.roomname = roomname;
       Parse.create(Messages);
@@ -60,15 +56,14 @@ var App = {
   },
 
   addMessage: function(text) {
-    Messages.username = App.username || 'Anonymous';
+    Messages.username = App.username;
     Messages.text = text || 'none';
-    Messages.roomname = '';
+    Messages.roomname = $('#selectRooms option:selected').val() || 'Default';
 
     Parse.create(Messages);
     MessagesView.renderMessage(Messages);
 
+    //when adding a new message in a room, room switches back to default;
   },
-
-
 
 };

@@ -27,7 +27,9 @@
       <div class="spinner"><img src="client/images/spiffygif_46x46.gif"></div>
       <div id="rooms">
         Change Room:
-        <select id="selectRooms"></select>
+        <select id="selectRooms">
+          <option selected="selected">Default</option>
+        </select>
         <p><input type="text" id="roomnameInput"></input><button id="roomnameInputButton">Add Room</button></p>
         
       </div>
@@ -72,11 +74,14 @@
     });
 
     $('#selectRooms').change(function() {
-      // var a = $('#selectRooms').val();
+      $( "#chats" ).empty();
+
       var selected = this.value;
-      console.log(selected);
-      RoomsView.renderRoom(selected);
-      //after room has been selected refresh to RenderRoom with related Messages
+      if (selected === "Default") {
+        MessagesView.initialize();
+      } else {
+        RoomsView.findSameRoomname(selected);
+      }
     });
 
   </script>

@@ -3,16 +3,22 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-    App.displayMessages();
-    RoomsView.initialize();
+    MessagesView.getMessages();
   },
-  
-  renderMessage: function(message) {
-    if (message.username === undefined) {
-      message.username = 'Anonymous';
-    } 
-    if (message.text === undefined) {
+
+  getMessages: function() {
+    App.fetch(MessagesView.renderMessage);
+  },
+
+  renderMessage: function(selected) {
+    if (!message.username) {
+      message.username = 'anonymous';
+    }
+    if (!message.text) {
       message.text = 'none';
+    }
+    if (!message.roomname || message.roomname === '') {
+      message.roomname = 'Default';
     }
     var node = MessageView.render(message);
     $('#chats').append(node);
