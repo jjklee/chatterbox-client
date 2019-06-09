@@ -4,22 +4,39 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    Rooms.addRoomsToSelection();
-    // App.enterRoom();
+    //add roomnames from result object to Rooms.js
+    Parse.readAll((data) => {
+      for (let i = 0; i < data.results.length; i++) {
+        if (!Rooms[data.results[i].roomname] && data.results[i].roomname !== undefined) {
+          console.log('one', data.results[i].roomname);
+          Rooms[data.results[i].roomname] = data.results[i].roomname;
+        }
+      }
+      //append the roomnames from Rooms.js to select dropdown
+      RoomsView.appendRooms(Rooms);
+    }); 
+
   },
 
-  renderRoom: function(room) {
-    // Rooms.availableRooms;
+  appendRooms: function(Rooms) {
+    for (var roomname in Rooms) {
+      //fix to use template, render();
+      // var option = RoomsView.render(Rooms);
+      var option = `<option>${roomname}</option>`;
+  
+      $('#selectRooms').append(option);
+    }
+  },
 
-    // if (message.room === undefined) {
-    //   return;
-    // } 
+  // render:  _.template(`
+  //  <option><%- roomname %></option>
+  // `)
 
-    // var node = MessageView.render(message);
-    // $('#chats').append(node);
+  renderRoom: function(selectedRoom) {
+    //grab all messages with the selectedRoom property value
 
-    //room.roomname
-    //var node = rooms.render(room);
+    //display messages with roomname
+
+    //hide all unrelated messages;
   }
-
 };

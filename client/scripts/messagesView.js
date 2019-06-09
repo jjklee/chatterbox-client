@@ -4,6 +4,7 @@ var MessagesView = {
 
   initialize: function() {
     App.displayMessages();
+    RoomsView.initialize();
   },
   
   renderMessage: function(message) {

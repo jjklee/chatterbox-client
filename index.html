@@ -19,8 +19,6 @@
         search += 'username=' + (prompt('What is your name?') || 'anonymous');
         window.location.search = search;
       }
-    
-
     </script>
   </head>
   <body>
@@ -62,9 +60,7 @@
       $('#refresh').click(function() {
         location.reload();
       });
-    </script>
 
-    <script>
     $('#roomnameInputButton').click(function() {
        var roomname = document.getElementById('roomnameInput').value;
        App.addRoom(roomname);
@@ -73,7 +69,16 @@
     $('.submit').click(function() {
       var mssg = document.getElementById('message').value;
       App.addMessage(mssg);
-    })
+    });
+
+    $('#selectRooms').change(function() {
+      // var a = $('#selectRooms').val();
+      var selected = this.value;
+      console.log(selected);
+      RoomsView.renderRoom(selected);
+      //after room has been selected refresh to RenderRoom with related Messages
+    });
+
   </script>
   </body>
 </html>

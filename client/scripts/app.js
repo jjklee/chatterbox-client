@@ -10,7 +10,6 @@ var App = {
     FormView.initialize();
     RoomsView.initialize();
     MessagesView.initialize();
-    // Rooms.initialize();
 
     // Fetch initial batch of messages
     App.startSpinner();
@@ -20,9 +19,8 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
-      // examine the response from the server request:
 
-      console.log(data);
+      // examine the response from the server request:
       //to display messages
       for (let i = 0; i < data.results.length; i++) {
         //messagesView.renderMessage
@@ -47,50 +45,19 @@ var App = {
     this.fetch(MessagesView.renderMessage);
   },
 
-  // enterRoom: function() {
-  //   this.fetch(RoomsView.renderRoom);
-  //   //fetch messages in a certain room
-
-  // },
-
-  getAllRooms: function() {
-    App.fetch(Rooms.getRooms);
-    return Rooms.availableRoomsObj;
-  },
-
   addRoom: function(roomname) {
-    //currentRooms currently returning undefined;
-    // this.getAllRooms();
-    var currentRooms = this.getAllRooms();
-    if (!currentRooms[roomname]) {
-      //add new roomname to availableRoomsObj
-      //create new template;
+
+    if (!Rooms[roomname]) {
       var newOption = '<option>' + roomname + '</option>';
       $('#selectRooms').append(newOption);
-
+      Messages.username = App.username || 'Anonymous';
+      Messages.text = text || 'none';
       Messages.roomname = roomname;
       Parse.create(Messages);
-      // RoomsView.renderRoom();
-      //push newroomName into Rooms.availableRooms ? being able to post requests will auto;
     } else {
       alert('Room already exist.');
     }
   },
-
-  // addRoomsToSelection: function() {
-  //   //doesn't get a
-  //   this.getAllRooms();
-  //   var allRooms = Rooms.availableRooms;
-  //   console.log(allRooms);
-  //   debugger;
-  //   for (let i = 0; i < Rooms.availableRooms.length; i++) {
-  //     //append to select
-  //     var option = _.template(`
-  //       <option><%- objectproperty %></option>
-  //   `);
-  //     $('#selectRooms').append(option);
-  //   }
-  // },
 
   addMessage: function(text) {
     Messages.username = App.username || 'Anonymous';
@@ -100,5 +67,8 @@ var App = {
     Parse.create(Messages);
     MessagesView.renderMessage(Messages);
 
-  }
+  },
+
+
+
 };
