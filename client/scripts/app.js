@@ -42,19 +42,6 @@ var App = {
     FormView.setStatus(false);
   },
 
-  addRoom: function(roomname) {
-    if (!Rooms[roomname]) {
-      var newOption = '<option>' + roomname + '</option>';
-      $('#selectRooms').append(newOption);
-      Messages.username = App.username;
-      Messages.text = text || 'none';
-      Messages.roomname = roomname;
-      Parse.create(Messages);
-    } else {
-      alert('Room already exist.');
-    }
-  },
-
   addMessage: function(text) {
     Messages.username = App.username;
     Messages.text = text || 'none';

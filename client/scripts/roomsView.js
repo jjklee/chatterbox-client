@@ -6,21 +6,23 @@ var RoomsView = {
   initialize: function() {
     //add roomnames from result object to Rooms.js
     Parse.readAll((data) => {
+      console.log(data);
       for (let i = 0; i < data.results.length; i++) {
-        if (!Rooms[data.results[i].roomname] && data.results[i].roomname !== undefined) {
+        if (!Rooms.allRooms[data.results[i].roomname] && data.results[i].roomname !== undefined) {
           if (data.results[i].roomname !== '') {
-            Rooms[data.results[i].roomname] = data.results[i].roomname;
+            Rooms.allRooms[data.results[i].roomname] = data.results[i].roomname;
           }          
         }
       }
       //append the roomnames from Rooms.js to select dropdown
-      RoomsView.appendRooms(Rooms);
+      RoomsView.appendRooms();
     }); 
 
   },
 
-  appendRooms: function(Rooms) {
-    for (var roomname in Rooms) {
+  appendRooms: function() {
+    debugger;
+    for (var roomname in Rooms.allRooms) {
       //fix to use template, render();
       // var option = RoomsView.render(Rooms);
       var option = `<option>${roomname}</option>`;
