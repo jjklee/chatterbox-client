@@ -12,6 +12,7 @@ var Parse = {
       contentType: 'application/json',
       success: function (data) {
         location.reload();
+        // MessagesView.initialize();
         console.log('chatterbox: Message sent');
       },
       error: function (data) {

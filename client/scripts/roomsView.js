@@ -4,14 +4,14 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    RoomsView.hasSameRoomname = [];
     //add roomnames from result object to Rooms.js
     Parse.readAll((data) => {
-      console.log(data);
       for (let i = 0; i < data.results.length; i++) {
-        if (!Rooms.allRooms[data.results[i].roomname] && data.results[i].roomname !== undefined) {
+        if (!Rooms.allRooms[data.results[i].roomname] && data.results[i].roomname !== undefined ) {
           if (data.results[i].roomname !== '') {
             Rooms.allRooms[data.results[i].roomname] = data.results[i].roomname;
-          }          
+          }
         }
       }
       //append the roomnames from Rooms.js to select dropdown
@@ -21,13 +21,13 @@ var RoomsView = {
   },
 
   appendRooms: function() {
-    debugger;
     for (var roomname in Rooms.allRooms) {
       //fix to use template, render();
       // var option = RoomsView.render(Rooms);
       var option = `<option>${roomname}</option>`;
-  
-      $('#selectRooms').append(option);
+      $('#rooms select').append(option);
+
+      // $('#selectRooms').append(option);
     }
   },
 
@@ -41,8 +41,6 @@ var RoomsView = {
     RoomsView.hasSameRoomname = [];
 
     Parse.readAll((data) => {
-      // examine the response from the server request:
-      //to display messages
       for (let i = 0; i < data.results.length; i++) {
         if (data.results[i].roomname === selected) {
           RoomsView.hasSameRoomname.push(data.results[i]);
@@ -55,7 +53,6 @@ var RoomsView = {
   renderRoom: function() {
     for (let i = 0; i < RoomsView.hasSameRoomname.length; i++) {
       var mssgObj = RoomsView.hasSameRoomname[i];
-      //render message
       //MessagesView.renderMessage(mssgObj[i]);
       //fix to use template
       $('#chats').append(`

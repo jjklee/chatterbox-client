@@ -63,26 +63,31 @@
         location.reload();
       });
 
-    $('#roomnameInputButton').click(function() {
-       var roomname = document.getElementById('roomnameInput').value;
-       Rooms.add(roomname);
-    });
+      $('#roomnameInputButton').click(function() {
+        var roomname = document.getElementById('roomnameInput').value;
+        Rooms.add(roomname);
+      });
 
-    $('.submit').click(function() {
-      var mssg = document.getElementById('message').value;
-      App.addMessage(mssg);
-    });
+      $('.submit').click(function() {
+        var mssg = document.getElementById('message').value;
+        App.addMessage(mssg);
+      });
 
-    $('#selectRooms').change(function() {
-      $( "#chats" ).empty();
+      $('#selectRooms').change(function() {
+        $( "#chats" ).empty();
 
-      var selected = this.value;
-      if (selected === "Default") {
-        MessagesView.initialize();
-      } else {
-        RoomsView.findSameRoomname(selected);
-      }
-    });
+        var selected = this.value;
+        if (selected === "Default") {
+          MessagesView.initialize();
+        } else {
+          RoomsView.findSameRoomname(selected);
+        }
+      });
+
+      $('#chats').on('click', '.username', function() {
+        var name = this.textContent
+        // friends.toggleStatus(name)
+      });
 
   </script>
   </body>

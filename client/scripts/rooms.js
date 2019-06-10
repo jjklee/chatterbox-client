@@ -6,7 +6,6 @@ var Rooms = {
       var newOption = '<option>' + roomname + '</option>';
       $('#selectRooms').append(newOption);
       Messages.username = App.username;
-      Messages.text = '';
       Messages.roomname = roomname;
       Parse.create(Messages);
     } else {

@@ -43,14 +43,13 @@ var App = {
   },
 
   addMessage: function(text) {
+    $( "#chats" ).empty();
     Messages.username = App.username;
     Messages.text = text || 'none';
     Messages.roomname = $('#selectRooms option:selected').val() || 'Default';
-
     Parse.create(Messages);
-    MessagesView.renderMessage(Messages);
-
-    //when adding a new message in a room, room switches back to default;
+    // MessagesView.renderMessage(Messages);
+    MessagesView.initialize();
   },
 
 };
