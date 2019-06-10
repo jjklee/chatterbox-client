@@ -23,7 +23,7 @@ var MessagesView = {
       message.roomname = message.roomname.trim();
     }
 
-    if (message.roomname === "Default") {
+    if (message.roomname === 'Default') {
       var node = MessageView.render(message);
       $('#chats').append(node);
     }
